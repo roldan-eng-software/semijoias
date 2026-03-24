@@ -162,7 +162,7 @@ export default async function HomePage() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((product) => (
-              <Link key={product.id} href={`/produtos/${product.id}`}>
+              <Link key={product.id} href={`/produtos/${product.slug}`}>
                 <Card className="group overflow-hidden transition-shadow hover:shadow-lg">
                   <div className="relative aspect-[3/4] bg-champagne">
                     {product.images && product.images.length > 0 ? (
