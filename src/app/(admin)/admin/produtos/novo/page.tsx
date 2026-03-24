@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Card } from '@/components/ui/Card'
@@ -34,11 +34,29 @@ interface FormData {
 export default function NovoProdutoPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true)
   const [message, setMessage] = useState('')
   const [categories, setCategories] = useState<Category[]>([])
   const [imagem, setImagem] = useState<File | null>(null)
   const [imagemPreview, setImagemPreview] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const res = await fetch('/api/admin/categorias')
+        if (res.ok) {
+          const data = await res.json()
+          setCategories(data)
+        }
+      } catch (error) {
+        console.error('Erro ao buscar categorias:', error)
+      } finally {
+        setIsLoadingCategories(false)
+      }
+    }
+    fetchCategories()
+  }, [])
 
   const handleImageClick = () => {
     fileInputRef.current?.click()
@@ -226,14 +244,16 @@ export default function NovoProdutoPage() {
                       onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
                       className="w-full rounded-lg border border-champagne bg-white px-4 py-2.5 text-dark-plum focus:border-rose-gold focus:outline-none focus:ring-1 focus:ring-rose-gold"
                       required
+                      disabled={isLoadingCategories}
                     >
-                      <option value="">Selecione uma categoria</option>
-                      <option value="cat_brincos">Brincos</option>
-                      <option value="cat_colares">Colares</option>
-                      <option value="cat_aneis">Anéis</option>
-                      <option value="cat_pulseiras">Pulseiras</option>
-                      <option value="cat_tornozeleiras">Tornozeleiras</option>
-                      <option value="cat_kits">Kits</option>
+                      <option value="">
+                        {isLoadingCategories ? 'Carregando...' : 'Selecione uma categoria'}
+                      </option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.id}>
+                          {cat.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div>
