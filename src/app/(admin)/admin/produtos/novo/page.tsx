@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Card } from '@/components/ui/Card'
@@ -36,6 +36,25 @@ export default function NovoProdutoPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [categories, setCategories] = useState<Category[]>([])
+  const [imagem, setImagem] = useState<File | null>(null)
+  const [imagemPreview, setImagemPreview] = useState<string | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleImageClick = () => {
+    fileInputRef.current?.click()
+  }
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setImagem(file)
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setImagemPreview(reader.result as string)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -322,10 +341,44 @@ export default function NovoProdutoPage() {
             <Card className="p-6">
               <h2 className="mb-4 font-playfair text-lg text-dark-plum">Imagem</h2>
               
-              <div className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-champagne bg-champagne/30 text-muted-mauve hover:border-rose-gold">
-                <ImagePlus className="mb-2 h-8 w-8" />
-                <span className="text-sm">Clique para adicionar imagem</span>
-              </div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+              />
+              
+              {imagemPreview ? (
+                <div className="relative">
+                  <img
+                    src={imagemPreview}
+                    alt="Preview"
+                    className="h-40 w-full rounded-lg object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setImagem(null)
+                      setImagemPreview(null)
+                      if (fileInputRef.current) {
+                        fileInputRef.current.value = ''
+                      }
+                    }}
+                    className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white hover:bg-red-600"
+                  >
+                    ×
+                  </button>
+                </div>
+              ) : (
+                <div
+                  onClick={handleImageClick}
+                  className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-champagne bg-champagne/30 text-muted-mauve hover:border-rose-gold"
+                >
+                  <ImagePlus className="mb-2 h-8 w-8" />
+                  <span className="text-sm">Clique para adicionar imagem</span>
+                </div>
+              )}
             </Card>
 
             {message && (
