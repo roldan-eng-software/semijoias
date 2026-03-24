@@ -52,7 +52,7 @@ export function Header() {
           href="/"
           className="font-playfair text-2xl font-semibold text-dark-plum"
         >
-          LUMIÈRE
+          Simone Semi Joias
         </Link>
 
         {/* Icons */}

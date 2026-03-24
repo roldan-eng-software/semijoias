@@ -27,10 +27,13 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: "LUMIÈRE | Semi-Joias Exclusivas",
+  title: "Simone Semi Joias",
   description:
     "Semi-joias exclusivas para mulheres que amam se sentir únicas. Brincos, colares, anéis e pulseiras banhados a ouro 18k.",
   keywords: ["semi-joias", "joias", "ouro 18k", "prata 925", "brincos", "colares", "pulseiras"],
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({
@@ -42,6 +45,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       className={`${playfair.variable} ${lato.variable} ${cormorant.variable} h-full antialiased`}
+      suppressHydrationWarning={true}
     >
       <body className="flex min-h-full flex-col font-lato">
         <AuthProvider>

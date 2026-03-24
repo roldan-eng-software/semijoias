@@ -1,16 +1,18 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Shield, Truck, RefreshCw, CreditCard, Sparkles, Gift } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
 import { Card } from "@/components/ui/Card"
+import heroImage from "@/../public/Hero.png"
 
 const categories = [
-  { name: "Brincos", slug: "brincos" },
-  { name: "Colares", slug: "colares" },
-  { name: "Anéis", slug: "aneis" },
-  { name: "Pulseiras", slug: "pulseiras" },
-  { name: "Tornozeleiras", slug: "tornozeleiras" },
-  { name: "Kits", slug: "kits" },
+  { name: "Brincos", slug: "brincos", image: "/Brincos.png" },
+  { name: "Colares", slug: "colares", image: "/Colares.png" },
+  { name: "Anéis", slug: "aneis", image: "/Aneis.png" },
+  { name: "Pulseiras", slug: "pulseiras", image: "/Pulseiras.png" },
+  { name: "Tornozeleiras", slug: "tornozeleiras", image: "/Tornozeleiras.png" },
+  { name: "Kits", slug: "kits", image: "/Kits.png" },
 ]
 
 const products = [
@@ -107,14 +109,22 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative flex min-h-[85vh] bg-champagne">
-        <div className="mx-auto flex w-full max-w-7xl items-center px-4 lg:px-8">
+      <section className="relative flex min-h-[85vh]">
+        <Image
+          src={heroImage}
+          alt="Hero"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center px-4 lg:px-8">
           <div className="max-w-xl space-y-6 py-20">
             <div className="h-0.5 w-14 bg-rose-gold" />
-            <h1 className="font-playfair text-5xl font-medium leading-tight text-dark-plum lg:text-6xl">
+            <h1 className="font-playfair text-5xl font-medium leading-tight text-white lg:text-6xl">
               Brilhe com elegância
             </h1>
-            <p className="font-cormorant text-xl italic text-muted-mauve">
+            <p className="font-cormorant text-xl italic text-white/90">
               Coleção Primavera · Semi-joias banhadas a ouro
             </p>
             <div className="flex gap-4 pt-2">
@@ -122,15 +132,13 @@ export default function HomePage() {
                 <Button size="lg">Ver coleção</Button>
               </Link>
               <Link href="/sobre">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-dark-plum">
                   Conheça a história
                 </Button>
               </Link>
             </div>
           </div>
         </div>
-        {/* Hero Image Placeholder */}
-        <div className="hidden bg-champagne-dark lg:block lg:w-1/2" />
       </section>
 
       {/* Categories */}
@@ -146,8 +154,13 @@ export default function HomePage() {
                 href={`/produtos?category=${category.slug}`}
                 className="group flex flex-col items-center gap-3"
               >
-                <div className="flex h-28 w-28 items-center justify-center rounded-full bg-champagne-dark transition-transform group-hover:scale-105">
-                  <span className="text-2xl">💎</span>
+                <div className="relative h-28 w-28 overflow-hidden rounded-full bg-champagne-dark transition-transform group-hover:scale-105">
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <span className="text-sm font-medium text-dark-plum">
                   {category.name}

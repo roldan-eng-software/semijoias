@@ -27,7 +27,7 @@ export function Footer() {
               href="/"
               className="font-playfair text-2xl font-semibold text-dark-plum"
             >
-              LUMIÈRE
+              Simone Semi Joias
             </Link>
             <p className="text-sm leading-relaxed text-muted-mauve">
               Semi-joias exclusivas para mulheres que amam se sentir
@@ -119,7 +119,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-champagne pt-8 text-center text-sm text-muted-mauve">
-          <p>© {new Date().getFullYear()} LUMIÈRE. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Simone Semi Joias. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

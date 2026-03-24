@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Card } from '@/components/ui/Card'
@@ -11,6 +11,7 @@ import { ArrowLeft, Loader2, Lock, Mail } from 'lucide-react'
 
 export default function SignInPage() {
   const router = useRouter()
+  const { data: session } = useSession()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -31,8 +32,14 @@ export default function SignInPage() {
       if (result?.error) {
         setError('E-mail ou senha incorretos')
       } else {
-        router.push('/')
-        router.refresh()
+        const res = await fetch('/api/auth/session')
+        const sessionData = await res.json()
+        
+        if (sessionData?.user?.role === 'ADMIN') {
+          router.push('/admin')
+        } else {
+          router.push('/')
+        }
       }
     } catch {
       setError('Erro ao fazer login')
