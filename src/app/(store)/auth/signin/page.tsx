@@ -30,7 +30,11 @@ export default function SignInPage() {
       })
 
       if (result?.error) {
-        setError('E-mail ou senha incorretos')
+        if (result.error === 'EMAIL_NOT_VERIFIED') {
+          setError('E-mail não verificado. Verifique sua caixa de entrada.')
+        } else {
+          setError('E-mail ou senha incorretos')
+        }
       } else {
         const res = await fetch('/api/auth/session')
         const sessionData = await res.json()

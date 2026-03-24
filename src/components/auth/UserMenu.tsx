@@ -3,12 +3,14 @@
 import { useState, useRef, useEffect } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { User, LogOut, Package, Settings } from 'lucide-react'
+import { User, LogOut, Package, Settings, LayoutDashboard } from 'lucide-react'
 
 export function UserMenu() {
   const { data: session, status } = useSession()
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+
+  const isAdmin = (session?.user as { role?: string })?.role === 'ADMIN'
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -52,6 +54,16 @@ export function UserMenu() {
             <p className="text-sm font-medium text-dark-plum">{session.user?.name}</p>
             <p className="text-xs text-muted-mauve">{session.user?.email}</p>
           </div>
+          {isAdmin && (
+            <Link
+              href="/admin"
+              className="flex items-center gap-3 px-4 py-2 text-sm text-purple-700 hover:bg-purple-50"
+              onClick={() => setIsOpen(false)}
+            >
+              <LayoutDashboard className="h-4 w-4" />
+              Dashboard
+            </Link>
+          )}
           <Link
             href="/conta/pedidos"
             className="flex items-center gap-3 px-4 py-2 text-sm text-dark-plum hover:bg-champagne"

@@ -20,6 +20,7 @@ export default function SignUpPage() {
     confirmPassword: '',
   })
   const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,9 +56,24 @@ export default function SignUpPage() {
         }),
       })
 
+      const data = await res.json()
+
       if (!res.ok) {
-        const data = await res.json()
         throw new Error(data.error || 'Erro ao criar conta')
+      }
+
+      if (data.needsVerification) {
+        setError('')
+        setSuccessMessage(data.message)
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          cpf: '',
+          password: '',
+          confirmPassword: '',
+        })
+        return
       }
 
       await signIn('credentials', {
@@ -100,6 +116,12 @@ export default function SignUpPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {successMessage && (
+              <div className="rounded-lg bg-green-50 p-3 text-sm text-green-600">
+                {successMessage}
+              </div>
+            )}
+
             {error && (
               <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600">
                 {error}

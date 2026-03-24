@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { Playfair_Display, Lato, Cormorant_Garamond } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/store/Header"
-import { Footer } from "@/components/store/Footer"
 import { CartProvider } from "@/components/store/CartProvider"
 import { AuthProvider } from "@/components/auth/AuthProvider"
 
@@ -51,7 +50,6 @@ export default function RootLayout({
         <AuthProvider>
           <Header />
           <main className="flex-1 pt-20">{children}</main>
-          <Footer />
           <CartProvider />
         </AuthProvider>
       </body>

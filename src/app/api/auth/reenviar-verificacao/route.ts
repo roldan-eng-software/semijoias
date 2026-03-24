@@ -1,42 +1,39 @@
 import { NextResponse } from 'next/server'
-import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
 import crypto from 'crypto'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { name, email, phone, cpf, password } = body
+    const { email } = body
 
-    if (!email || !password) {
+    if (!email) {
       return NextResponse.json(
-        { error: 'E-mail e senha são obrigatórios' },
+        { error: 'E-mail é obrigatório' },
         { status: 400 }
       )
     }
 
-    const existingUser = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
     })
 
-    if (existingUser) {
+    if (!user) {
       return NextResponse.json(
-        { error: 'E-mail já está em uso' },
+        { error: 'E-mail não encontrado' },
+        { status: 404 }
+      )
+    }
+
+    if (user.emailVerified) {
+      return NextResponse.json(
+        { error: 'E-mail já verificado. Faça login.' },
         { status: 400 }
       )
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12)
-
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        phone,
-        cpf,
-        password: hashedPassword,
-        emailVerified: null,
-      },
+    await prisma.verificationToken.deleteMany({
+      where: { identifier: email },
     })
 
     const verificationToken = await prisma.verificationToken.create({
@@ -49,19 +46,19 @@ export async function POST(request: Request) {
 
     const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/auth/verificar?token=${verificationToken.token}`
 
-    console.log('=== VERIFICAÇÃO DE E-MAIL ===')
+    console.log('=== REENVIO DE VERIFICAÇÃO ===')
     console.log('E-mail:', email)
     console.log('Link de verificação:', verificationUrl)
     console.log('==============================')
 
     return NextResponse.json({
-      needsVerification: true,
-      message: 'Conta criada! Verifique seu e-mail para ativar a conta.',
+      success: true,
+      message: 'E-mail de verificação reenviado!',
     })
   } catch (error) {
-    console.error('Register error:', error)
+    console.error('Resend verification error:', error)
     return NextResponse.json(
-      { error: 'Erro ao criar conta' },
+      { error: 'Erro ao reenviar e-mail' },
       { status: 500 }
     )
   }

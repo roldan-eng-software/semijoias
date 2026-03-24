@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { prisma } from "@/lib/prisma"
 import { Shield, Truck, RefreshCw, CreditCard, Sparkles, Gift } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
@@ -15,40 +16,14 @@ const categories = [
   { name: "Kits", slug: "kits", image: "/Kits.png" },
 ]
 
-const products = [
-  {
-    id: "1",
-    name: "Brinco Lua Crescente",
-    material: "Ouro 18k",
-    price: 189.9,
-    isNew: false,
-    isOnSale: false,
-  },
-  {
-    id: "2",
-    name: "Colar Coração Dourado",
-    material: "Ouro 18k",
-    price: 259.9,
-    isNew: true,
-    isOnSale: false,
-  },
-  {
-    id: "3",
-    name: "Anel Prata Flor",
-    material: "Prata 925",
-    price: 149.9,
-    isNew: true,
-    isOnSale: false,
-  },
-  {
-    id: "4",
-    name: "Pulseira Cadeado",
-    material: "Ouro 18k",
-    price: 129.9,
-    isNew: false,
-    isOnSale: true,
-  },
-]
+async function getFeaturedProducts() {
+  const products = await prisma.product.findMany({
+    where: { isFeatured: true, isActive: true },
+    take: 4,
+    orderBy: { createdAt: "desc" },
+  })
+  return products
+}
 
 const testimonials = [
   {
@@ -93,7 +68,8 @@ const features = [
   },
 ]
 
-export default function HomePage() {
+export default async function HomePage() {
+  const products = await getFeaturedProducts()
   return (
     <div className="flex flex-col">
       {/* Trust Bar */}
@@ -187,9 +163,18 @@ export default function HomePage() {
               <Link key={product.id} href={`/produtos/${product.id}`}>
                 <Card className="group overflow-hidden transition-shadow hover:shadow-lg">
                   <div className="relative aspect-[3/4] bg-champagne">
-                    <div className="flex h-full w-full items-center justify-center text-6xl">
-                      ✨
-                    </div>
+                    {product.images && product.images.length > 0 ? (
+                      <Image
+                        src={product.images[0]}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-6xl">
+                        ✨
+                      </div>
+                    )}
                     {product.isNew && (
                       <Badge
                         variant="gold"
@@ -198,7 +183,7 @@ export default function HomePage() {
                         Novo
                       </Badge>
                     )}
-                    {product.isOnSale && (
+                    {product.compareAtPrice && product.compareAtPrice > product.price && (
                       <Badge variant="blush" className="absolute left-3 top-3">
                         Oferta
                       </Badge>
@@ -208,9 +193,9 @@ export default function HomePage() {
                     <h3 className="font-lato text-sm font-medium text-dark-plum">
                       {product.name}
                     </h3>
-                    <p className="text-xs text-muted-mauve">{product.material}</p>
+                    <p className="text-xs text-muted-mauve">{product.material || 'Semi-joia'}</p>
                     <p className="font-lato text-base font-semibold text-rose-gold">
-                      R$ {product.price.toFixed(2).replace(".", ",")}
+                      R$ {Number(product.price).toFixed(2).replace(".", ",")}
                     </p>
                   </div>
                 </Card>
