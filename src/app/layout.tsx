@@ -26,12 +26,59 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: "Simone Semi Joias",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://simoesemijoias.com.br'),
+  title: {
+    default: "Simone Semijoias | Semi-joias Exclusivas Banhadas a Ouro 18k",
+    template: "%s | Simone Semijoias",
+  },
   description:
-    "Semi-joias exclusivas para mulheres que amam se sentir únicas. Brincos, colares, anéis e pulseiras banhados a ouro 18k.",
-  keywords: ["semi-joias", "joias", "ouro 18k", "prata 925", "brincos", "colares", "pulseiras"],
+    "Semi-joias exclusivas para mulheres que amam se sentir únicas. Brincos, colares, anéis e pulseiras banhados a ouro 18k e prata 925. Frete grátis acima de R$199.",
+  keywords: ["semi-joias", "joias", "ouro 18k", "prata 925", "brincos", "colares", "pulseiras", "anel", "pingente", "kits"],
+  authors: [{ name: "Simone Semijoias" }],
+  creator: "Simone Semijoias",
+  publisher: "Simone Semijoias",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://simoesemijoias.com.br",
+    siteName: "Simone Semijoias",
+    title: "Simone Semijoias | Semi-joias Exclusivas Banhadas a Ouro 18k",
+    description:
+      "Semi-joias exclusivas para mulheres que amam se sentir únicas. Brincos, colares, anéis e pulseiras banhados a ouro 18k e prata 925.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Simone Semijoias - Semi-joias Exclusivas",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Simone Semijoias | Semi-joias Exclusivas",
+    description:
+      "Semi-joias exclusivas para mulheres que amam se sentir únicas. Brincos, colares, anéis e pulseiras banhados a ouro 18k.",
+    images: ["/og-image.png"],
+    creator: "@simoesemijoias",
+  },
+  verification: {
+    google: "google-site-verification-code",
+  },
   icons: {
     icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 }
 

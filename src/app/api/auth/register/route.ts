@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
+import { sendVerificationEmail } from '@/lib/email'
 import crypto from 'crypto'
 
 export async function POST(request: Request) {
@@ -47,12 +48,7 @@ export async function POST(request: Request) {
       },
     })
 
-    const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/auth/verificar?token=${verificationToken.token}`
-
-    console.log('=== VERIFICAÇÃO DE E-MAIL ===')
-    console.log('E-mail:', email)
-    console.log('Link de verificação:', verificationUrl)
-    console.log('==============================')
+    await sendVerificationEmail(email, name || '', verificationToken.token)
 
     return NextResponse.json({
       needsVerification: true,

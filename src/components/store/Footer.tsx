@@ -10,9 +10,8 @@ const footerLinks = {
   ],
   institucional: [
     { href: "/sobre", label: "Sobre nós" },
-    { href: "/contato", label: "Contato" },
-    { href: "/trocas", label: "Política de trocas" },
-    { href: "/faq", label: "Perguntas frequentes" },
+    { href: "/privacidade", label: "Política de Privacidade" },
+    { href: "/termos", label: "Termos de Uso" },
   ],
 }
 

@@ -11,6 +11,8 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { type, data } = body
 
+    console.log('🔔 Webhook recebido:', { type, data })
+
     if (type !== 'payment') {
       return NextResponse.json({ status: 'ok' })
     }
@@ -22,6 +24,8 @@ export async function POST(request: Request) {
 
     const externalReference = paymentData.external_reference
     const status = paymentData.status
+
+    console.log('📊 Payment status:', { externalReference, status })
 
     if (externalReference && externalReference.startsWith('order_')) {
       const orderNumber = externalReference.replace('order_', '')
@@ -45,7 +49,7 @@ export async function POST(request: Request) {
           orderStatus = 'PROCESSING'
       }
 
-      await prisma.order.updateMany({
+      const updated = await prisma.order.updateMany({
         where: {
           orderNumber: {
             contains: orderNumber.slice(-8),
@@ -56,6 +60,8 @@ export async function POST(request: Request) {
           paymentId: String(paymentId),
         },
       })
+
+      console.log('✅ Pedido atualizado:', { count: updated.count, orderStatus })
     }
 
     return NextResponse.json({ status: 'ok' })
