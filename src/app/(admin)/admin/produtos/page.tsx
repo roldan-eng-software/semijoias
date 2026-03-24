@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import { ProductActions } from '@/components/admin/ProductActions'
 import { Plus, Search, Edit, Trash2 } from 'lucide-react'
 
 export default async function AdminProductsPage({
@@ -124,20 +125,7 @@ export default async function AdminProductsPage({
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex items-center justify-end gap-2">
-                      <Link
-                        href={`/admin/produtos/${product.id}`}
-                        className="rounded-lg p-2 text-muted-mauve hover:bg-champagne hover:text-dark-plum"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Link>
-                      <button
-                        className="rounded-lg p-2 text-muted-mauve hover:bg-red-50 hover:text-red-600"
-                        disabled
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
+                    <ProductActions productId={product.id} />
                   </td>
                 </tr>
               ))}
