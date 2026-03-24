@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
+import { PaymentButton } from '@/components/checkout/PaymentButton'
 import {
   ShoppingBag,
   Truck,
@@ -404,9 +405,28 @@ export default function CheckoutPage() {
                   Voltar
                 </Button>
               )}
-              <Button className="flex-1" onClick={nextStep}>
-                {currentStep === 'payment' ? 'Finalizar pedido' : 'Continuar'}
-              </Button>
+              {currentStep === 'payment' ? (
+                <PaymentButton
+                  customer={{
+                    email: formData.email,
+                    name: formData.name,
+                    phone: formData.phone,
+                  }}
+                  shippingAddress={{
+                    street: formData.street,
+                    number: formData.number,
+                    complement: formData.complement,
+                    district: formData.district,
+                    city: formData.city,
+                    state: formData.state,
+                    zipCode: formData.zipCode,
+                  }}
+                />
+              ) : (
+                <Button className="flex-1" onClick={nextStep}>
+                  Continuar
+                </Button>
+              )}
             </div>
           </div>
 
