@@ -18,13 +18,13 @@ const footerLinks = {
 export function Footer() {
   return (
     <footer className="border-t border-champagne bg-ivory">
-      <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 py-8 md:py-12 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="space-y-4">
             <Link
               href="/"
-              className="font-playfair text-2xl font-semibold text-dark-plum"
+              className="font-playfair text-xl md:text-2xl font-semibold text-dark-plum"
             >
               Simone Semi Joias
             </Link>
@@ -63,7 +63,7 @@ export function Footer() {
 
           {/* Collections */}
           <div>
-            <h4 className="mb-4 font-lato text-sm font-bold uppercase tracking-wide text-dark-plum">
+            <h4 className="mb-3 md:mb-4 font-lato text-sm font-bold uppercase tracking-wide text-dark-plum">
               Coleções
             </h4>
             <ul className="space-y-2">
@@ -82,7 +82,7 @@ export function Footer() {
 
           {/* Institucional */}
           <div>
-            <h4 className="mb-4 font-lato text-sm font-bold uppercase tracking-wide text-dark-plum">
+            <h4 className="mb-3 md:mb-4 font-lato text-sm font-bold uppercase tracking-wide text-dark-plum">
               Institucional
             </h4>
             <ul className="space-y-2">
@@ -101,14 +101,14 @@ export function Footer() {
 
           {/* Payments */}
           <div>
-            <h4 className="mb-4 font-lato text-sm font-bold uppercase tracking-wide text-dark-plum">
+            <h4 className="mb-3 md:mb-4 font-lato text-sm font-bold uppercase tracking-wide text-dark-plum">
               Pagamentos
             </h4>
             <div className="flex flex-wrap gap-2">
               {["PIX", "Visa", "Master", "Boleto"].map((payment) => (
                 <span
                   key={payment}
-                  className="rounded-md bg-champagne px-3 py-1 text-xs font-medium text-muted-mauve"
+                  className="rounded-md bg-champagne px-2 md:px-3 py-1 text-xs font-medium text-muted-mauve"
                 >
                   {payment}
                 </span>
@@ -117,7 +117,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-champagne pt-8 text-center text-sm text-muted-mauve">
+        <div className="mt-8 md:mt-12 border-t border-champagne pt-6 md:pt-8 text-center text-sm text-muted-mauve">
           <p>© {new Date().getFullYear()} Simone Semi Joias. Todos os direitos reservados.</p>
         </div>
       </div>

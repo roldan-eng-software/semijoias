@@ -41,25 +41,28 @@ export default async function ProductsPage({
     <div className="min-h-screen bg-ivory">
       {/* Header */}
       <div className="bg-dark-plum py-3">
-        <div className="mx-auto flex max-w-7xl items-center justify-around px-4">
-          <span className="text-xs text-white">Frete grátis acima de R$199</span>
-          <span className="text-xs text-white">Garantia de 6 meses</span>
-          <span className="text-xs text-white">Parcele em 3x</span>
+        <div className="mx-auto flex max-w-7xl items-center justify-center gap-4 px-4 md:justify-around md:gap-0">
+          <span className="hidden text-xs text-white md:block">Frete grátis acima de R$199</span>
+          <span className="hidden text-xs text-white md:block">Garantia de 6 meses</span>
+          <span className="hidden text-xs text-white md:block">Parcele em 3x</span>
+          <div className="flex gap-4 md:hidden">
+            <span className="text-xs text-white">Frete Grátis ✓</span>
+          </div>
         </div>
       </div>
 
       {/* Page Header */}
-      <div className="bg-champagne py-12">
+      <div className="bg-champagne py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <h1 className="font-playfair text-4xl text-dark-plum lg:text-5xl">
+          <h1 className="font-playfair text-2xl md:text-3xl lg:text-4xl text-dark-plum lg:text-5xl">
             {selectedCategory ? selectedCategory.name : "Nossos produtos"}
           </h1>
           {selectedCategory?.description && (
-            <p className="mt-2 font-cormorant text-lg italic text-muted-mauve">
+            <p className="mt-1 md:mt-2 font-cormorant text-base md:text-lg italic text-muted-mauve">
               {selectedCategory.description}
             </p>
           )}
-          <div className="mt-4 flex items-center gap-2 text-sm text-muted-mauve">
+          <div className="mt-3 md:mt-4 flex items-center gap-2 text-xs md:text-sm text-muted-mauve">
             <Link href="/" className="hover:text-rose-gold">
               Início
             </Link>
@@ -75,12 +78,12 @@ export default async function ProductsPage({
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
-        <div className="flex flex-col gap-8 lg:flex-row">
+      <div className="mx-auto max-w-7xl px-4 py-6 md:py-8 lg:px-8">
+        <div className="flex flex-col gap-6 md:gap-8 lg:flex-row">
           {/* Sidebar */}
           <aside className="w-full lg:w-64 shrink-0">
             {/* Search */}
-            <form className="mb-6">
+            <form className="mb-4 md:mb-6">
               <Input
                 type="search"
                 name="search"
@@ -91,8 +94,8 @@ export default async function ProductsPage({
             </form>
 
             {/* Categories */}
-            <div className="mb-8">
-              <h3 className="mb-4 font-playfair text-lg text-dark-plum">
+            <div className="mb-6 md:mb-8">
+              <h3 className="mb-3 md:mb-4 font-playfair text-base md:text-lg text-dark-plum">
                 Categorias
               </h3>
               <ul className="space-y-2">
@@ -126,7 +129,7 @@ export default async function ProductsPage({
             </div>
 
             {/* Filters Info */}
-            <div className="rounded-lg bg-champagne p-4">
+            <div className="rounded-lg bg-champagne p-3 md:p-4">
               <p className="text-sm text-muted-mauve">
                 <span className="font-semibold text-dark-plum">
                   {products.length}
@@ -140,23 +143,23 @@ export default async function ProductsPage({
           {/* Products Grid */}
           <div className="flex-1">
             {products.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-20 text-center">
-                <div className="mb-4 text-6xl">🔍</div>
-                <h3 className="font-playfair text-xl text-dark-plum">
+              <div className="flex flex-col items-center justify-center py-12 md:py-20 text-center">
+                <div className="mb-4 text-4xl md:text-6xl">🔍</div>
+                <h3 className="font-playfair text-lg md:text-xl text-dark-plum">
                   Nenhum produto encontrado
                 </h3>
-                <p className="mt-2 text-muted-mauve">
+                <p className="mt-1 md:mt-2 text-sm md:text-base text-muted-mauve">
                   Tente buscar por outro termo ou categoria
                 </p>
                 <Link
                   href="/produtos"
-                  className="mt-4 text-sm font-medium text-rose-gold hover:underline"
+                  className="mt-3 md:mt-4 text-sm font-medium text-rose-gold hover:underline"
                 >
                   Ver todos os produtos
                 </Link>
               </div>
             ) : (
-              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-4 md:gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 {products.map((product) => (
                   <Link key={product.id} href={`/produtos/${product.slug}`}>
                     <Card className="group h-full overflow-hidden transition-shadow hover:shadow-lg">
@@ -169,17 +172,17 @@ export default async function ProductsPage({
                             className="object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                         ) : (
-                          <div className="flex h-full w-full items-center justify-center text-6xl">
+                          <div className="flex h-full w-full items-center justify-center text-4xl md:text-6xl">
                             ✨
                           </div>
                         )}
                         {product.isNew && (
-                          <Badge variant="gold" className="absolute left-3 top-3">
+                          <Badge variant="gold" className="absolute left-2 md:left-3 top-2 md:top-3">
                             Novo
                           </Badge>
                         )}
                         {product.compareAtPrice && (
-                          <Badge variant="blush" className="absolute left-3 top-3">
+                          <Badge variant="blush" className="absolute left-2 md:left-3 top-2 md:top-3">
                             -{Math.round(
                               ((Number(product.compareAtPrice) -
                                 Number(product.price)) /
@@ -190,18 +193,18 @@ export default async function ProductsPage({
                           </Badge>
                         )}
                       </div>
-                      <div className="space-y-2 p-4">
+                      <div className="space-y-1 md:space-y-2 p-3 md:p-4">
                         <span className="text-xs uppercase tracking-wider text-muted-mauve">
                           {product.category.name}
                         </span>
-                        <h3 className="font-lato text-sm font-medium text-dark-plum line-clamp-2">
+                        <h3 className="font-lato text-xs md:text-sm font-medium text-dark-plum line-clamp-2">
                           {product.name}
                         </h3>
                         <p className="text-xs text-muted-mauve">
                           {product.material}
                         </p>
                         <div className="flex items-center gap-2">
-                          <p className="font-lato text-base font-semibold text-rose-gold">
+                          <p className="font-lato text-sm md:text-base font-semibold text-rose-gold">
                             R${" "}
                             {Number(product.price)
                               .toFixed(2)
