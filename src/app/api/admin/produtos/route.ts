@@ -27,6 +27,7 @@ export async function POST(request: Request) {
       isActive,
       isFeatured,
       isNew,
+      imageUrl,
     } = body
 
     if (!name || !price || !categoryId) {
@@ -52,7 +53,7 @@ export async function POST(request: Request) {
         isActive: isActive ?? true,
         isFeatured: isFeatured ?? false,
         isNew: isNew ?? false,
-        images: [],
+        images: imageUrl ? [imageUrl] : [],
       },
     })
 

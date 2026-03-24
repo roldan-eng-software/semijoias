@@ -107,6 +107,8 @@ export default function NovoProdutoPage() {
     setMessage('')
 
     try {
+      const imageUrl = imagemPreview || null
+
       const res = await fetch('/api/admin/produtos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -115,6 +117,7 @@ export default function NovoProdutoPage() {
           price: parseFloat(formData.price),
           compareAtPrice: formData.compareAtPrice ? parseFloat(formData.compareAtPrice) : null,
           stock: parseInt(formData.stock),
+          imageUrl,
         }),
       })
 
