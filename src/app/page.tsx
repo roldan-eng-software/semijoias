@@ -1,11 +1,12 @@
 import Link from "next/link"
 import Image from "next/image"
-import { prisma } from "@/lib/prisma"
 import { Shield, Truck, RefreshCw, CreditCard, Sparkles, Gift } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
 import { Card } from "@/components/ui/Card"
 import heroImage from "@/../public/Hero.png"
+
+export const dynamic = 'force-dynamic'
 
 const categories = [
   { name: "Brincos", slug: "brincos", image: "/Brincos.png" },
@@ -17,6 +18,7 @@ const categories = [
 ]
 
 async function getFeaturedProducts() {
+  const { prisma } = await import('@/lib/prisma')
   const products = await prisma.product.findMany({
     where: { isFeatured: true, isActive: true },
     take: 4,
