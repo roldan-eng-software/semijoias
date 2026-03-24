@@ -1,9 +1,11 @@
 import { MetadataRoute } from 'next'
-import { prisma } from '@/lib/prisma'
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://simoesemijoias.com.br'
 
+export const dynamic = 'force-dynamic'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { prisma } = await import('@/lib/prisma')
   const staticPages = [
     '',
   ]
