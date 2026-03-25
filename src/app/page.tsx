@@ -115,7 +115,7 @@ export default async function HomePage() {
               </Link>
               <Link href="/sobre">
                 <Button variant="outline" size="lg" className="w-full border-white text-white hover:bg-white hover:text-dark-plum sm:w-auto">
-                 了解 a história
+                 Nossa história
                 </Button>
               </Link>
             </div>
@@ -225,7 +225,7 @@ export default async function HomePage() {
             <Link href="/produtos?collection=outono">
               <Button
                 variant="secondary"
-                className="bg-white text-rose-gold hover:bg-champagne"
+                className="bg-white text-rose-gold hover:bg-zinc-800"
               >
                 Descobrir agora
               </Button>
