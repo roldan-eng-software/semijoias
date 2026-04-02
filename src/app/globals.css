@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 @theme {
   --font-playfair: "Playfair Display", serif;
@@ -39,6 +40,7 @@
   :root {
     --background: #FAF7F4;
     --foreground: #2C1A2E;
+    scroll-behavior: smooth;
   }
 
   * {
@@ -47,6 +49,7 @@
 
   body {
     @apply bg-ivory text-dark-plum font-lato antialiased;
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
