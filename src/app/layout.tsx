@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Playfair_Display, Lato, Cormorant_Garamond } from "next/font/google"
 import "./globals.css"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import { Header } from "@/components/store/Header"
 import { CartProvider } from "@/components/store/CartProvider"
 import { AuthProvider } from "@/components/auth/AuthProvider"
@@ -100,6 +101,7 @@ export default function RootLayout({
           <CartProvider />
         </AuthProvider>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-Q8PP6YVNW4"} />
     </html>
   )
 }
