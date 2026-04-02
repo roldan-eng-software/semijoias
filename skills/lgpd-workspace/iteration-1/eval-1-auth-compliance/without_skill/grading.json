@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "Menciona logs de auditoria para conformidade.", "passed": false, "evidence": "Não menciona logs."},
+    {"text": "Orienta sobre minimização de dados.", "passed": true, "evidence": "Menciona não guardar se não precisar."},
+    {"text": "Menciona a importância da criptografia (SSL/TLS).", "passed": true, "evidence": "Menciona HTTPS."}
+  ]
+}

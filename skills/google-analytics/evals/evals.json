@@ -1,0 +1,23 @@
+{
+  "skill_name": "google-analytics",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Adicione o Google Analytics no meu projeto Next.js.",
+      "expected_output": "The agent should ask for the Google Analytics Tracking ID (G-XXXXXXXXXX).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Integre o Google Analytics no meu site. O meu ID é G-12345678.",
+      "expected_output": "The agent should implement the Google Analytics script in the root layout or index.html.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Como eu vejo o tráfego do meu site? Quero usar o GA4.",
+      "expected_output": "The agent should suggest using Google Analytics and ask for the Tracking ID.",
+      "files": []
+    }
+  ]
+}

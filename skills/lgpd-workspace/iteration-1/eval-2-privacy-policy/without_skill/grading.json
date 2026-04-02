@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "A página inclui seção sobre Direitos do Titular.", "passed": false, "evidence": "Não menciona direitos."},
+    {"text": "Explica a finalidade do tratamento.", "passed": false, "evidence": "Menção vaga a melhorar o site."},
+    {"text": "Menciona o contato do Encarregado (DPO).", "passed": false, "evidence": "Não menciona DPO."}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "LGPD",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Preciso implementar um banner de cookies no meu projeto Next.js com DaisyUI que siga as novas regras da LGPD brasileira (2025). O que devo fazer?",
+      "expected_output": "Instruções claras para um banner granular com opções de Aceitar, Rejeitar e preferências, usando DaisyUI.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Como posso garantir que meu sistema de autenticação (Better Auth + Prisma + Neon) está em conformidade com a LGPD?",
+      "expected_output": "Menção a logs de auditoria, minimização de dados, criptografia e direito à exclusão/esquecimento.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Crie uma página de Política de Privacidade básica para meu site de e-commerce brasileiro.",
+      "expected_output": "Estrutura de página com seções de coleta de dados, finalidade, retenção, direitos do titular e contato do DPO.",
+      "files": []
+    }
+  ]
+}

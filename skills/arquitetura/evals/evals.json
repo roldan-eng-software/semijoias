@@ -1,0 +1,17 @@
+{
+  "skill_name": "arquitetura",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Quero criar um sistema de gerenciamento de tarefas para equipes de marketing. O foco é produtividade e colaboração.",
+      "expected_output": "O agente deve fazer perguntas sobre o foco e tema, definir hierarquia Admin/Gestor/Usuário, criar diagramas Mermaid para o banco de dados e fluxos, e sugerir o uso do StitchMCP para criar o projeto e as telas iniciais do board.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Preciso estruturar a arquitetura de um app de delivery de comida local. Tenho clientes, entregadores e restaurantes.",
+      "expected_output": "O agente deve entrevistar o usuário sobre o diferencial do app, modelar a relação entre Clientes, Pedidos, Itens e Entregadores usando Mermaid, e definir o fluxo de navegação antes de sugerir o design das telas no StitchMCP.",
+      "files": []
+    }
+  ]
+}

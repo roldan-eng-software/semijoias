@@ -1,0 +1,23 @@
+{
+  "skill_name": "db-neon",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Configure o banco de dados Neon para um novo projeto de E-commerce. Preciso de tabelas para usuários, produtos e pedidos. O projeto usa Prisma.",
+      "expected_output": "O agente deve consultar o arquivo schema.prisma, propor os modelos User, Product e Order, e sugerir o comando npx prisma migrate dev.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Adicione uma coluna 'phone_number' na tabela 'Users' no Neon. Não uso Prisma, quero fazer direto via MCP com segurança.",
+      "expected_output": "O agente deve usar prepare_database_migration, criar uma branch temporária, adicionar a coluna e depois sugerir o commit para a main.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "O sistema está lento. Verifique se há queries demoradas no Neon e sugira melhorias.",
+      "expected_output": "O agente deve usar list_slow_queries e prepare_query_tuning para analisar a performance e sugerir índices.",
+      "files": []
+    }
+  ]
+}

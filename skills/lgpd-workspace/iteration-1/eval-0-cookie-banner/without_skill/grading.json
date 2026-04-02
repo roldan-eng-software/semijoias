@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "Menciona o uso de DaisyUI para o banner.", "passed": false, "evidence": "Nenhuma menção ao DaisyUI."},
+    {"text": "Orienta sobre a criação de opções granulares (Aceitar/Rejeitar/Preferências).", "passed": false, "evidence": "Apenas menciona um botão simples de Aceitar."},
+    {"text": "Menciona como armazenar o consentimento (localStorage ou DB).", "passed": true, "evidence": "Menciona localStorage."}
+  ]
+}

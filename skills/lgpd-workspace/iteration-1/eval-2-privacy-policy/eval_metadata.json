@@ -1,0 +1,10 @@
+{
+  "eval_id": 2,
+  "eval_name": "eval-2-privacy-policy",
+  "prompt": "Crie uma página de Política de Privacidade básica para meu site de e-commerce brasileiro.",
+  "assertions": [
+    {"name": "direitos", "text": "A página inclui seção sobre Direitos do Titular."},
+    {"name": "finalidade", "text": "Explica a finalidade do tratamento."},
+    {"name": "dpo-contato", "text": "Menciona o contato do Encarregado (DPO)."}
+  ]
+}

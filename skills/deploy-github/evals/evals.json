@@ -1,0 +1,17 @@
+{
+  "skill_name": "deploy-github",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a new project in the current directory and initialize it with GitHub repository.",
+      "expected_output": "The project should have a git repo, a remote 'origin', and at least one commit on 'main' pushed to GitHub.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Update the project description and then push it to GitHub.",
+      "expected_output": "The project should commit the changes and push them to 'main' without asking for any confirmation.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "A página inclui seção sobre Direitos do Titular.", "passed": true, "evidence": "Seção 2 detalha os direitos da LGPD."},
+    {"text": "Explica a finalidade do tratamento.", "passed": true, "evidence": "Seção 1 explica finalidade de contrato."},
+    {"text": "Menciona o contato do Encarregado (DPO).", "passed": true, "evidence": "Seção 4 fornece e-mail do DPO."}
+  ]
+}

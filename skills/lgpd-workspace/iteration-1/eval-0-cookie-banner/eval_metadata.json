@@ -1,0 +1,10 @@
+{
+  "eval_id": 0,
+  "eval_name": "eval-0-cookie-banner",
+  "prompt": "Preciso implementar um banner de cookies no meu projeto Next.js com DaisyUI que siga as novas regras da LGPD brasileira (2025). O que devo fazer?",
+  "assertions": [
+    {"name": "menciona-daisyui", "text": "Menciona o uso de DaisyUI para o banner."},
+    {"name": "granularidade", "text": "Orienta sobre a criação de opções granulares (Aceitar/Rejeitar/Preferências)."},
+    {"name": "armazenamento", "text": "Menciona como armazenar o consentimento (localStorage ou DB)."}
+  ]
+}

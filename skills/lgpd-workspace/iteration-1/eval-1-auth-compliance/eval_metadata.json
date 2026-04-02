@@ -1,0 +1,10 @@
+{
+  "eval_id": 1,
+  "eval_name": "eval-1-auth-compliance",
+  "prompt": "Como posso garantir que meu sistema de autenticação (Better Auth + Prisma + Neon) está em conformidade com a LGPD?",
+  "assertions": [
+    {"name": "menciona-logs", "text": "Menciona logs de auditoria para conformidade."},
+    {"name": "minimizacao", "text": "Orienta sobre minimização de dados."},
+    {"name": "criptografia", "text": "Menciona a importância da criptografia (SSL/TLS)."}
+  ]
+}

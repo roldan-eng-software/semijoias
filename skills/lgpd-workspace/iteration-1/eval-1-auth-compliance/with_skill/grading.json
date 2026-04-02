@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "Menciona logs de auditoria para conformidade.", "passed": true, "evidence": "Sugere usar hooks do Better Auth para logs."},
+    {"text": "Orienta sobre minimização de dados.", "passed": true, "evidence": "Menciona configurar Prisma para coletar apenas o necessário."},
+    {"text": "Menciona a importância da criptografia (SSL/TLS).", "passed": true, "evidence": "Menciona SSL do Neon."}
+  ]
+}
